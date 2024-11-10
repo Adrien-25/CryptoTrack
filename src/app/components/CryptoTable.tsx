@@ -127,7 +127,7 @@ export default function CryptoTable() {
               <span className="mr-1">{formatPercentage(crypto.price_change_percentage_24h_in_currency).icon}</span>
               {formatPercentage(crypto.price_change_percentage_24h_in_currency).text}%
             </div>
-            <div data-comment="marketcap" className="text-right row-start-2 row-end-2 lg:row-auto px-2">
+            <div data-comment="marketcap" className="text-right row-start-1 row-end-3 lg:row-auto px-2">
               {formatLargeNumber(crypto.market_cap)}
             </div>
             <div data-comment="volume" className="text-right px-2 hidden lg:block">
