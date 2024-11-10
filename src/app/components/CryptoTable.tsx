@@ -2,6 +2,7 @@
 
 import useSWR from "swr";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa"; // Assurez-vous d'installer react-icons
+import Image from "next/image";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -105,7 +106,14 @@ export default function CryptoTable() {
               className="lg:flex  justify-start flex-row w-full items-center grid lg:grid-rows-[1fr_1fr] row-start-1 row-end-3 lg:row-auto grid-cols-[2rem_1fr]  gap-x-2 lg:gap-x-0"
             >
               <div data-comment="currency-icon" className="row-start-1 row-end-3 lg:row-start-auto lg:row-end-auto">
-                <img alt="icon" className="h-8 w-8 max-w-fit lg:mx-4" src={crypto.image} />
+                {/* <img alt="icon" className="h-8 w-8 max-w-fit lg:mx-4" src={crypto.image} /> */}
+                <Image
+                  alt="icon"
+                  className="h-8 w-8 max-w-fit lg:mx-4"
+                  width={30}
+                  height={30}
+                  src={crypto.image}
+                />
               </div>
               <div data-comment="ticker" className="uppercase	flex items-center pr-4">
                 {crypto.symbol}
