@@ -1,9 +1,13 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+// import {FavoritesProvider} from "@/app/context/FavoritesContext";
+import React, { createContext, ReactNode, useContext, useState } from "react";
+import { FavoritesProvider } from "./context/FavoritesContext";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",  
+  src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
@@ -25,10 +29,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children} 
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <FavoritesProvider>{children}</FavoritesProvider>
       </body>
     </html>
   );

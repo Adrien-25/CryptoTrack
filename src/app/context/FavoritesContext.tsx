@@ -1,34 +1,45 @@
-// context/FavoritesContext.tsx
+"use client";
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
-// 1. Déclare un type pour le contexte
-type FavoritesContextType = {
-  favorites: string[];
-  addFavorite: (id: string) => void;
-  removeFavorite: (id: string) => void;
-  isFavorite: (id: string) => boolean;
-};
+interface FavoritesContextType {
+  favoriteIds: string[];
+  toggleFavorite: (id: string) => void;
+  showFavoritesOnly: boolean;
+  toggleShowFavorites: () => void;
+}
 
-// 2. Crée le contexte avec ce type et initialise-le avec null comme valeur par défaut
-const FavoritesContext = createContext<FavoritesContextType | null>(null);
+const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
-export function FavoritesProvider({ children }: { children: ReactNode }) {
-  const [favorites, setFavorites] = useState<string[]>([]);
+interface FavoritesProviderProps {
+  children: ReactNode;
+}
 
-  const addFavorite = (id: string) => setFavorites([...favorites, id]);
-  const removeFavorite = (id: string) => setFavorites(favorites.filter(fav => fav !== id));
-  const isFavorite = (id: string) => favorites.includes(id);
+export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }) => {
+  const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+
+  const toggleFavorite = (id: string) => {
+    setFavoriteIds((prevIds) =>
+      prevIds.includes(id) ? prevIds.filter((favId) => favId !== id) : [...prevIds, id]
+    );
+  };
+
+  const toggleShowFavorites = () => {
+    setShowFavoritesOnly((prev) => !prev);
+  };
 
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritesContext.Provider
+      value={{ favoriteIds, toggleFavorite, showFavoritesOnly, toggleShowFavorites }}
+    >
       {children}
     </FavoritesContext.Provider>
   );
-}
+};
 
-// 3. Met à jour le hook `useFavorites` pour gérer le cas où le contexte serait `null`
-export const useFavorites = () => {
+// Hook pour utiliser le contexte
+export const useFavorites = (): FavoritesContextType => {
   const context = useContext(FavoritesContext);
   if (!context) {
     throw new Error("useFavorites must be used within a FavoritesProvider");
