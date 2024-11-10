@@ -61,7 +61,7 @@ export default function CryptoTable() {
       >
         <div data-comment="fav">&nbsp;</div>
         <div data-comment="position" className="position items-center justify-center hidden lg:flex">
-          №
+          № 
         </div>
         <div data-comment="compound-name" className="px-4 flex items-center">
           Token
@@ -73,7 +73,7 @@ export default function CryptoTable() {
           24h %
         </div>
         <div data-comment="marketcap" className="px-2 flex items-center justify-end">
-          Cap. Bours.<span className="hidden lg:block">, €</span>
+          Cap Bours<span className="hidden lg:block">, €</span>
         </div>
         <div data-comment="volume" className="px-2 items-center justify-end hidden lg:flex">
           Vol. 24h<span className="hidden lg:block">, €</span>

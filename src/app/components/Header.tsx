@@ -28,16 +28,6 @@ export default function Header() {
                   stroke="#333"
                   strokeWidth="4"
                 />
-                <text
-                  x="100"
-                  y="185"
-                  fontFamily="Arial, sans-serif"
-                  fontSize="24"
-                  textAnchor="middle"
-                  fill="#333"
-                >
-                  CryptoTrack
-                </text>
                 <path
                   d="M85 70 L115 70 L115 130 L85 130 M85 100 L115 100"
                   fill="none"
@@ -86,6 +76,7 @@ export default function Header() {
             <button
               type="button"
               className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center bg-white hover:bg-slate-400 duration-300 rounded-full"
+              id="switch"
             >
               {/* ICON FAVORITE */}
               <svg
