@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const data = await fetchCryptoData();
     return NextResponse.json(data);
-  } catch (error) {
+  } catch  {
     return NextResponse.error();
   }
 }

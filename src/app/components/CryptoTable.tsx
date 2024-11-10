@@ -15,20 +15,18 @@ export default function CryptoTable() {
   if (error) return <div>Failed to load data</div>;
   if (!data) return <div>Loading...</div>;
 
-  // Arrondissement au centième
+  // Arrondissement au centième et ajout de couleur et icone
   const formatPercentage = (value: string) => {
     if (typeof value !== "number") return { text: "N/A", colorClass: "", icon: null };
-
     const rounded = Math.round(value * 100) / 100;
     let formatted = rounded.toFixed(2);
     formatted = formatted.replace(/\.?0+$/, "");
-
     const colorClass = value > 0 ? "text-green-500" : value < 0 ? "text-red-500" : "text-gray-500";
     const icon = value > 0 ? <FaCaretUp /> : value < 0 ? <FaCaretDown /> : null;
-
     return { text: formatted, colorClass, icon };
   };
 
+  //Formatage des grands nombre
   function formatLargeNumber(number: number) {
     return new Intl.NumberFormat("fr-FR", {
       notation: "compact",
@@ -36,6 +34,18 @@ export default function CryptoTable() {
       style: "decimal",
       // currency: "EUR",
     }).format(number);
+  }
+
+  interface CryptoData {
+    id: string;
+    name: string;
+    symbol: string;
+    current_price: number;
+    market_cap_rank: number;
+    price_change_percentage_24h_in_currency: string;
+    market_cap: number;
+    market_cap_change_24h: number;
+    image: string;
   }
 
   // grid-cols-[2.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr]
@@ -57,25 +67,25 @@ export default function CryptoTable() {
           Token
         </div>
         <div data-comment="current-price" className="px-2 flex items-center justify-end">
-          Price, €
+          Prix, €
         </div>
         <div data-comment="change" className="px-2 items-center justify-end hidden lg:flex">
           24h %
         </div>
         <div data-comment="marketcap" className="px-2 flex items-center justify-end">
-          Market Cap<span className="hidden lg:block">, €</span>
+          Cap. Bours.<span className="hidden lg:block">, €</span>
         </div>
         <div data-comment="volume" className="px-2 items-center justify-end hidden lg:flex">
-          24h Volume<span className="hidden lg:block">, €</span>
+          Vol. 24h<span className="hidden lg:block">, €</span>
         </div>
         <div data-comment="chart" className="px-4 items-center justify-end mr-8 hidden xl:flex">
-          Last 7d
+          Dern. 7j
         </div>
       </div>
       <div className="cards-header-mobile"></div>
       <div data-comment="card-list" className="pt-2 lg:pt-4 flex gap-1 flex-col">
         {/* <div className="card-content grid grid-cols-[3.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr_12rem] grid-rows-1 items-center m-[1px] py-4"></div> */}
-        {data.map((crypto: any) => (
+        {data.map((crypto: CryptoData) => (
           <div
             key={crypto.id}
             className="card-content grid  items-center m-[1px] py-4 bg-slate-900 bg-opacity-50 rounded-md border border-gray-500 border-opacity-50 text-white text-xs	sm:text-sm 
@@ -107,13 +117,7 @@ export default function CryptoTable() {
             >
               <div data-comment="currency-icon" className="row-start-1 row-end-3 lg:row-start-auto lg:row-end-auto">
                 {/* <img alt="icon" className="h-8 w-8 max-w-fit lg:mx-4" src={crypto.image} /> */}
-                <Image
-                  alt="icon"
-                  className="h-8 w-8 max-w-fit lg:mx-4"
-                  width={30}
-                  height={30}
-                  src={crypto.image}
-                />
+                <Image alt="icon" className="h-8 w-8 max-w-fit lg:mx-4" width={30} height={30} src={crypto.image} />
               </div>
               <div data-comment="ticker" className="uppercase	flex items-center pr-4">
                 {crypto.symbol}
@@ -146,18 +150,5 @@ export default function CryptoTable() {
         ))}
       </div>
     </div>
-
-    // <table>
-    //   <tbody>
-    //     {data.map((crypto: any) => (
-    //       <tr key={crypto.id}>
-    //         <td>{crypto.market_cap_rank}</td>
-    //         <td>{crypto.name}</td>
-    //         <td>${crypto.current_price}</td>
-    //         <td>${crypto.market_cap}</td>
-    //       </tr>
-    //     ))}
-    //   </tbody>
-    // </table>
   );
 }
