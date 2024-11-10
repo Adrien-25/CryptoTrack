@@ -1,11 +1,15 @@
+// "use client"
 
-import CryptoTable from '@/app/components/CryptoTable';
+// import { useState } from "react";
+import Header from "@/app/components/Header";
+import CryptoTable from "@/app/components/CryptoTable";
+// import FavoritesTable from "./components/FavoritesTable";
 
 export default function Home() {
   return (
-    <div className="">
-    <h1>Cryptomonnaies</h1>
-    <CryptoTable />
+    <div className="p-4 bg-slate-800  h-screen overflow-hidden">
+      <Header />
+      <CryptoTable />
     </div>
   );
 }

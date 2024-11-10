@@ -14,8 +14,26 @@
   }
 }
 
+/* Masquer la scrollbar pour les navigateurs modernes */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-mono), Arial;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+.cardlist {
+  clip-path: inset(0 0 0 0 round 24px 24px 24px 24px);
+  max-height: calc(100vh - 96px);
+  background: linear-gradient(130deg, #2d812c  0%, #ff1616 100%);
+}
+.card-content{
 }
