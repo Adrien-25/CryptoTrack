@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 interface FavoritesContextType {
   favoriteIds: string[];
@@ -19,10 +19,16 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
+  // Ajoute Bitcoin par défaut aux favoris si ce n'est pas déjà fait
+  useEffect(() => {
+    if (!favoriteIds.includes("bitcoin")) {
+      setFavoriteIds((prevIds) => ["bitcoin", ...prevIds]); // Ajoute l'ID de Bitcoin aux favoris
+    }
+  }, [favoriteIds]); // Se déclenche seulement si favoriteIds change
+
   const toggleFavorite = (id: string) => {
-    setFavoriteIds((prevIds) =>
-      prevIds.includes(id) ? prevIds.filter((favId) => favId !== id) : [...prevIds, id]
-    );
+    if (id === "bitcoin") return;
+    setFavoriteIds((prevIds) => (prevIds.includes(id) ? prevIds.filter((favId) => favId !== id) : [...prevIds, id]));
   };
 
   const toggleShowFavorites = () => {
@@ -30,9 +36,7 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
   };
 
   return (
-    <FavoritesContext.Provider
-      value={{ favoriteIds, toggleFavorite, showFavoritesOnly, toggleShowFavorites }}
-    >
+    <FavoritesContext.Provider value={{ favoriteIds, toggleFavorite, showFavoritesOnly, toggleShowFavorites }}>
       {children}
     </FavoritesContext.Provider>
   );
