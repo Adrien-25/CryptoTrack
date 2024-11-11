@@ -7,7 +7,7 @@ import CryptoTable from "@/app/components/CryptoTable";
 
 export default function Home() {
   return (
-    <div className="p-4 bg-slate-800  h-screen overflow-hidden">
+    <div className="p-4 bg-slate-800  h-screen overflow-hidden box-border">
       <Header />
       <CryptoTable />
     </div>

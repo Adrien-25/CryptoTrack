@@ -1,19 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useFavorites } from "@/app/context/FavoritesContext";
-// import { IoIosSearch } from "react-icons/io";
-// import { CiHeart } from "react-icons/ci";
 import { MdFormatListNumbered } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import SearchBar from "@/app/components/SearchBar";
 
 export default function Header() {
   const { toggleShowFavorites, showFavoritesOnly } = useFavorites();
-  // console.log(showFavoritesOnly);
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+
+  const toggleSearchBar = () => {
+    setIsSearchVisible((prev) => !prev);
+  };
+  const handleSearch = (query: string) => {
+    // Ici, on peut gérer la logique de recherche, par exemple, en passant `query` au composant parent
+    console.log("Recherche:", query);
+  };
 
   return (
-    <header className="mb-4">
+    <header className="mb-4 relative">
       <div className="flex justify-between">
         <div className="header-logo">
           <div className="relative flex items-center justify-start">
@@ -30,7 +37,7 @@ export default function Header() {
                 />
               </svg>
             </div>
-            <div className="text-white pl-2 text-xl font-bold tracking-wide">CRYPTOTRACK</div>
+            <div className="text-white pl-2 text-xl font-bold tracking-wide hidden lg:block">CRYPTOTRACK</div>
           </div>
         </div>
         <div className="flex justify-start items-center gap-x-4	">
@@ -39,6 +46,7 @@ export default function Header() {
             <button
               type="button"
               className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center   duration-300 rounded-full"
+              onClick={toggleSearchBar}
             >
               <FaSearch className="h-4 w-4 fill-white" />
             </button>
@@ -52,11 +60,32 @@ export default function Header() {
               onClick={toggleShowFavorites}
             >
               {/* {showFavoritesOnly ? <MdFormatListNumbered className="h-6 w-6" /> : <CiHeart className="h-6 w-6" />} */}
-              {showFavoritesOnly ? <MdFormatListNumbered className="h-4 w-4 fill-white" /> : <FaRegHeart className="h-4 w-4 fill-white" />}
+              {showFavoritesOnly ? (
+                <MdFormatListNumbered className="h-4 w-4 fill-white" />
+              ) : (
+                <FaRegHeart className="h-4 w-4 fill-white" />
+              )}
             </button>
           </div>
         </div>
       </div>
+      <SearchBar
+        isVisible={isSearchVisible}
+        toggleSearchBar={toggleSearchBar}
+        onSearch={handleSearch}
+        className={`${
+          isSearchVisible
+            ? "opacity-100 visible"
+            : "opacity-0 invisible"
+        }`}
+      />
+
+      {/* {isSearchVisible && (
+        <SearchBar
+          isVisible={isSearchVisible}
+          toggleSearchBar={toggleSearchBar}
+          onSearch={handleSearch}
+        />)} */}
     </header>
   );
 }

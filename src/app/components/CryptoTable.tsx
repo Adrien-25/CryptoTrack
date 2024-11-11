@@ -84,7 +84,7 @@ export default function CryptoTable() {
           Cap Bours<span className="hidden lg:block">, €</span>
         </div>
         <div data-comment="volume" className="px-2 items-center justify-end hidden lg:flex">
-          Vol. 24h<span className="hidden lg:block">, €</span>
+          Vol 24h<span className="hidden lg:block">, €</span>
         </div>
         <div data-comment="chart" className="px-4 items-center justify-end mr-8 hidden xl:flex">
           Dern. 7j
