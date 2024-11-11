@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 // import {FavoritesProvider} from "@/app/context/FavoritesContext";
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React from "react";
 import { FavoritesProvider } from "./context/FavoritesContext";
 
 const geistSans = localFont({
