@@ -7,16 +7,22 @@ import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import SearchBar from "@/app/components/SearchBar";
 
-export default function Header() {
+interface HeaderProps {
+  // query: string;
+  onSearch: (query: string) => void;
+}
+
+export default function Header({ onSearch }: HeaderProps) {
   const { toggleShowFavorites, showFavoritesOnly } = useFavorites();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
 
   const toggleSearchBar = () => {
     setIsSearchVisible((prev) => !prev);
   };
+
   const handleSearch = (query: string) => {
-    // Ici, on peut gérer la logique de recherche, par exemple, en passant `query` au composant parent
-    console.log("Recherche:", query);
+    onSearch(query);
+    // console.log("Recherche:", query);
   };
 
   return (
@@ -59,7 +65,6 @@ export default function Header() {
               id="switch"
               onClick={toggleShowFavorites}
             >
-              {/* {showFavoritesOnly ? <MdFormatListNumbered className="h-6 w-6" /> : <CiHeart className="h-6 w-6" />} */}
               {showFavoritesOnly ? (
                 <MdFormatListNumbered className="h-4 w-4 fill-white" />
               ) : (
@@ -73,19 +78,8 @@ export default function Header() {
         isVisible={isSearchVisible}
         toggleSearchBar={toggleSearchBar}
         onSearch={handleSearch}
-        className={`${
-          isSearchVisible
-            ? "opacity-100 visible"
-            : "opacity-0 invisible"
-        }`}
+        className={`${isSearchVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}
       />
-
-      {/* {isSearchVisible && (
-        <SearchBar
-          isVisible={isSearchVisible}
-          toggleSearchBar={toggleSearchBar}
-          onSearch={handleSearch}
-        />)} */}
     </header>
   );
 }

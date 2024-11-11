@@ -7,7 +7,12 @@ import { useFavorites } from "../context/FavoritesContext";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default function CryptoTable() {
+interface CryptoTableProps {
+  query: string;
+}
+
+const CryptoTable: React.FC<CryptoTableProps> = ({ query }: CryptoTableProps) => {
+  // export default function CryptoTable({query }) {
   const { favoriteIds, showFavoritesOnly, toggleFavorite } = useFavorites();
 
   // GET CRYPTO DATA
@@ -53,10 +58,16 @@ export default function CryptoTable() {
   }
 
   // FAV FONCTIONNALITY
-  // FILTER CRYPTO
+  // FILTER CRYPTO FAVORITE
   const displayedCryptos = showFavoritesOnly
     ? data.filter((crypto: CryptoData) => favoriteIds.includes(crypto.id))
     : data;
+
+  console.log("Query in CryptoTable:", query);
+  const searchedFav = query
+    ? displayedCryptos.filter((crypto: CryptoData) => crypto.name.toLowerCase().includes(query.toLowerCase()))
+    : // ? displayedCryptos.filter((crypto: CryptoData) => query.includes(crypto.id))
+      displayedCryptos;
 
   return (
     <div className="p-2 lg:p-4 lg:pt-0 pt-0 overflow-y-scroll overflow-x-hidden no-scrollbar cardlist">
@@ -93,7 +104,7 @@ export default function CryptoTable() {
       <div className="cards-header-mobile"></div>
       <div data-comment="card-list" className="pt-2 lg:pt-4 flex gap-1 flex-col min-h-[85vh]">
         {/* {data.map((crypto: CryptoData) => ( */}
-        {displayedCryptos.map((crypto: CryptoData) => (
+        {searchedFav.map((crypto: CryptoData) => (
           <div
             key={crypto.id}
             className="card-content grid  items-center m-[1px] py-4 bg-slate-900 bg-opacity-50 rounded-md border border-gray-500 border-opacity-50 text-white text-xs	sm:text-sm 
@@ -156,4 +167,5 @@ export default function CryptoTable() {
       </div>
     </div>
   );
-}
+};
+export default CryptoTable;
