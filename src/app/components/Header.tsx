@@ -2,9 +2,11 @@
 
 import React from "react";
 import { useFavorites } from "@/app/context/FavoritesContext";
-import { IoIosSearch } from "react-icons/io";
-import { CiHeart } from "react-icons/ci";
+// import { IoIosSearch } from "react-icons/io";
+// import { CiHeart } from "react-icons/ci";
 import { MdFormatListNumbered } from "react-icons/md";
+import { FaSearch } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 
 export default function Header() {
   const { toggleShowFavorites, showFavoritesOnly } = useFavorites();
@@ -36,20 +38,21 @@ export default function Header() {
           <div>
             <button
               type="button"
-              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center bg-white hover:bg-slate-400 duration-300 rounded-full"
+              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center   duration-300 rounded-full"
             >
-              <IoIosSearch className="h-6 w-6" />
+              <FaSearch className="h-4 w-4 fill-white" />
             </button>
           </div>
           {/* SWITCH BUTTON */}
           <div>
             <button
               type="button"
-              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center bg-white hover:bg-slate-400 duration-300 rounded-full"
+              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center   duration-300 rounded-full"
               id="switch"
               onClick={toggleShowFavorites}
             >
-              {showFavoritesOnly ? <MdFormatListNumbered className="h-6 w-6" /> : <CiHeart className="h-6 w-6" />}
+              {/* {showFavoritesOnly ? <MdFormatListNumbered className="h-6 w-6" /> : <CiHeart className="h-6 w-6" />} */}
+              {showFavoritesOnly ? <MdFormatListNumbered className="h-4 w-4 fill-white" /> : <FaRegHeart className="h-4 w-4 fill-white" />}
             </button>
           </div>
         </div>
