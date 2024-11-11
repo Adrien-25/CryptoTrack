@@ -14,9 +14,8 @@ export default function Home() {
 
   return (
     <div className="p-4 bg-slate-800  h-screen overflow-hidden box-border">
-      <Header  onSearch={handleSearch} />
-      <CryptoTable  query={query} />
-      {/* <CryptoTable query={query} onSearch={handleSearch} /> */}
+      <Header onSearch={handleSearch} />
+      <CryptoTable query={query} />
     </div>
   );
 }

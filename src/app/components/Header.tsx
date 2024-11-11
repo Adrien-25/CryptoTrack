@@ -22,7 +22,6 @@ export default function Header({ onSearch }: HeaderProps) {
 
   const handleSearch = (query: string) => {
     onSearch(query);
-    // console.log("Recherche:", query);
   };
 
   return (
