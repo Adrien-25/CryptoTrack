@@ -5,7 +5,7 @@ export async function fetchCryptoData() {
     params: {
       vs_currency: "eur",
       order: "market_cap_desc",
-      per_page: 10,
+      per_page: 100,
       page: 1,
       sparkline: false,
       price_change_percentage: "1h,24h,7d",
