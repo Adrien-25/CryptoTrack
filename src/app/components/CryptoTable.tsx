@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { FaCaretUp, FaCaretDown, FaStar, FaRegStar } from "react-icons/fa";
 import Image from "next/image";
 import { useFavorites } from "../context/FavoritesContext";
+import Loading from "@/app/components/LoadingPage";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -20,8 +21,9 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ query }: CryptoTableProps) =>
     revalidateOnFocus: false,
     refreshInterval: 0,
   });
-  if (error) return <div>Failed to load data</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error) return <div>Échec du chargement des données</div>;
+  if (!data) return <Loading/>;
+  // if (!data) return <div>Chargement...</div>;
 
   // ROUNDING TO HUNDREDTHS AND ADDING COLOR + ICON
   const formatPercentage = (value: string) => {
@@ -83,7 +85,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ query }: CryptoTableProps) =>
           №
         </div>
         <div data-comment="compound-name" className="px-4 flex items-center">
-          Token
+          Jeton
         </div>
         <div data-comment="current-price" className="px-2 flex items-center justify-end">
           Prix, €

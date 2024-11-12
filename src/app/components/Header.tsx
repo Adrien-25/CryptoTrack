@@ -42,25 +42,17 @@ export default function Header({ onSearch }: HeaderProps) {
                 />
               </svg>
             </div>
-            <div className="text-white pl-2 text-xl font-bold tracking-wide hidden lg:block">CRYPTOTRACK</div>
+            <div className="text-white pl-2 text-base	 md:text-lg lg:text-xl font-bold tracking-wide hidden sm:block">
+              CRYPTOTRACK
+            </div>
           </div>
         </div>
         <div className="flex justify-start items-center gap-x-4	">
-          {/* SEARCH BUTTON */}
-          <div>
-            <button
-              type="button"
-              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center   duration-300 rounded-full"
-              onClick={toggleSearchBar}
-            >
-              <FaSearch className="h-4 w-4 fill-white" />
-            </button>
-          </div>
           {/* SWITCH BUTTON */}
           <div>
             <button
               type="button"
-              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center   duration-300 rounded-full"
+              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center duration-300 rounded-full"
               id="switch"
               onClick={toggleShowFavorites}
             >
@@ -69,6 +61,16 @@ export default function Header({ onSearch }: HeaderProps) {
               ) : (
                 <FaRegHeart className="h-4 w-4 fill-white" />
               )}
+            </button>
+          </div>
+          {/* SEARCH BUTTON */}
+          <div>
+            <button
+              type="button"
+              className="h-8 w-8 leading-8 text-lg p-0 border-transparent flex items-center justify-center   duration-300 rounded-full"
+              onClick={toggleSearchBar}
+            >
+              <FaSearch className="h-4 w-4 fill-white" />
             </button>
           </div>
         </div>
