@@ -77,8 +77,8 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ query }: CryptoTableProps) =>
         className="card-header grid opacity-70 h-8 bg-[#000002cc] sticky z-30 -mx-4 px-4 top-0 text-white text-xs	
         grid-cols-[2rem_1fr__5rem_6rem]
         lg:grid-cols-[2.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr] 
-        xl:grid-cols-[2.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr_12rem]
         "
+        // xl:grid-cols-[2.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr_12rem]
       >
         <div data-comment="fav">&nbsp;</div>
         <div data-comment="position" className="position items-center justify-center hidden lg:flex">
@@ -99,9 +99,9 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ query }: CryptoTableProps) =>
         <div data-comment="volume" className="px-2 items-center justify-end hidden lg:flex">
           Vol 24h<span className="hidden lg:block">, €</span>
         </div>
-        <div data-comment="chart" className="px-4 items-center justify-end mr-8 hidden xl:flex">
+        {/* <div data-comment="chart" className="px-4 items-center justify-end mr-8 hidden xl:flex">
           Dern. 7j
-        </div>
+        </div> */}
       </div>
       <div className="cards-header-mobile"></div>
       <div data-comment="card-list" className="pt-2 lg:pt-4 flex gap-1 flex-col min-h-[85vh]">
@@ -114,7 +114,8 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ query }: CryptoTableProps) =>
             lg:grid-rows-1
             grid-cols-[2rem_1fr__5rem_6rem]
             lg:grid-cols-[2.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr] 
-            xl:grid-cols-[2.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr_12rem]"
+            "
+            // xl:grid-cols-[2.5rem_2.5rem_2.5fr_1fr_1fr_1fr_1fr_12rem]
           >
             <button
               data-comment="fav"
@@ -163,7 +164,7 @@ const CryptoTable: React.FC<CryptoTableProps> = ({ query }: CryptoTableProps) =>
             <div data-comment="volume" className="text-right px-2 hidden lg:block">
               {formatLargeNumber(crypto.market_cap_change_24h)}
             </div>
-            <div data-comment="chart" className="hidden xl:block"></div>
+            {/* <div data-comment="chart" className="hidden xl:block"></div> */}
           </div>
         ))}
       </div>

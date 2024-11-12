@@ -35,7 +35,7 @@ const SearchBar: React.FC<RechercheProps> = ({ onSearch, toggleSearchBar, classN
         value={query}
         onChange={handleInputChange}
         placeholder="Rechercher une cryptomonnaie"
-        className="w-full p-2 border-b border-gray-300 focus:outline-none bg-transparent text-white text-sm"
+        className="w-full p-2 border-b border-x-0 border-t-0 border-gray-300 focus:outline-none bg-transparent text-white text-sm"
       />
       <button
         type="button"
